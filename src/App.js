@@ -1,12 +1,11 @@
 import "./App.css";
-import Card from "./components/Card";
-import Dashboard from "./interface/Dashboard";
+import Dashboard from "./interface/dashboard/Dashboard";
 
 function App() {
   return (
-    <div className=" p-10">
+    <body className=" p-10 bg-color-background">
       <Dashboard />
-    </div>
+    </body>
   );
 }
 

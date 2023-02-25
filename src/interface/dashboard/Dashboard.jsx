@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "../components/Card";
-import Sidebar from "../components/Sidebar";
+import Card from "../../components/Card";
+import Sidebar from "../global/Sidebar";
 
 
 const Dashbaord = () => {

@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-color: #ffffff;
+    --color-secondary-color: #0e3b50;
+    --color-accent-color:#b5510d;
+    --color-sucess-color:#5eba7d;
+    --color-info-color:#5bc0de;
+    --color-warning-color:#f0ad4e;
+    --color-error-color:#bb2124;
+    --color-background-color: #ececec;
+  }
+  :root[class="dark"] {
+    --color-primary-color:  #0a1124;
+    --color-secondary-color:  #0e3b50;
+    --color-accent-color:   #b5510d;
+    --color-sucess-color:    #5eba7d;
+    --color-info-color:   #5bc0de;
+    --color-warning-color:    #f0ad4e;
+    --color-error-color:   #bb2124;
+    --color-background-color: #32353e;
+  }
+
+  html{
+    font-family: "Source Sans Pro" , "sans-serif";
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-color-primary border-color-accent drop-shadow-custom border-[1px] border-[323d4f] rounded-xl;
+  }
+
+  .calendar-button {
+    @apply text-[#adb4c2] font-semibold hover:text-white;
+  }
+  .calendar-button-selected {
+    @apply font-semibold bg-slate-50 hover:text-[#1d2027] text-[#1d2027] rounded-sm;
+  }
+}
