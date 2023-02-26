@@ -1,11 +1,54 @@
 import "./App.css";
-import Dashboard from "./interface/dashboard/Dashboard";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { FiSettings } from "react-icons/fi";
+import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 function App() {
+  const activeMenu = true;
+
   return (
-    <body className=" p-10 bg-color-background">
-      <Dashboard />
-    </body>
+    <div>
+      <BrowserRouter>
+        <div className=" flex relative dark:bg-main-dark-bg">
+          <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
+            <TooltipComponent content="Settings" position="Top">
+              <button
+                type="button"
+                className="text-3xl p-3 rounded-full hover:drop-shadow-xl text-white"
+              >
+                <FiSettings />
+              </button>
+            </TooltipComponent>
+          </div>
+          {activeMenu ? (
+            <div className=" sidebar w-72 fixed dark:bg-secondary-dark-bg bg-white">
+              sidebar
+            </div>
+          ) : (
+            <div className="w-0 dark:bg-main-dark-bg">sidebar closed</div>
+          )}
+          <div
+            className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${
+              activeMenu ? "md:ml-72" : "flex-2"
+            }`}
+          >
+            <div className=" fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
+              Navbar
+            </div>
+          </div>
+          <div>
+            <Routes>
+              {/* Dashboard */}
+              <Route path="/" element="sirT9ewed" />
+              <Route path="/sirT9ewed" element="sirT9ewed" />
+              {/* Details */}
+              <Route path="/transactions" element="transactions" />
+              <Route path="/edit" element="edit" />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
+    </div>
   );
 }
 
