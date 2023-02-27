@@ -3,8 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
+import { Navbar, Footer, Sidebar} from './components';
+import { Transactions} from "./pages";
+
+import { useStateContext } from "./contexts/ContextProvider";
+
 function App() {
-  const activeMenu = true;
+  const {activeMenu} = useStateContext();
 
   return (
     <div>
@@ -21,11 +26,11 @@ function App() {
             </TooltipComponent>
           </div>
           {activeMenu ? (
-            <div className=" sidebar w-72 fixed dark:bg-secondary-dark-bg bg-white">
-              sidebar
+            <div className=" sidebar w-72 fixed bg-white dark:bg-secondary-dark-bg ">
+              <Sidebar/>
             </div>
           ) : (
-            <div className="w-0 dark:bg-main-dark-bg">sidebar closed</div>
+            <div className="w-0 dark:bg-main-dark-bg"><Sidebar/></div>
           )}
           <div
             className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${
@@ -33,7 +38,7 @@ function App() {
             }`}
           >
             <div className=" fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
-              Navbar
+              <Navbar/>
             </div>
           </div>
           <div>
@@ -42,7 +47,7 @@ function App() {
               <Route path="/" element="sirT9ewed" />
               <Route path="/sirT9ewed" element="sirT9ewed" />
               {/* Details */}
-              <Route path="/transactions" element="transactions" />
+              <Route path="/transactions" element= <Transactions/> />
               <Route path="/edit" element="edit" />
             </Routes>
           </div>
