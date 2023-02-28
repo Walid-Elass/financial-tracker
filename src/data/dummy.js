@@ -2,6 +2,7 @@ import React from "react";
 import { MdDashboard } from "react-icons/md";
 import { GrTransaction } from "react-icons/gr";
 import { BsPersonCircle } from "react-icons/bs";
+import { SiAddthis } from "react-icons/si";
 
 export const links = [
   {
@@ -15,10 +16,23 @@ export const links = [
   },
 
   {
-    title: "Pages",
+    title: "Transactions",
     links: [
       {
-        name: "transactions",
+        name: "Details",
+        icon: <GrTransaction/>,
+      },
+      {
+        name: "Add transaction",
+        icon: <SiAddthis/>,
+      },
+    ],
+  },
+  {
+    title: "Profile",
+    links: [
+      {
+        name: "Details",
         icon: <GrTransaction />,
       },
       {

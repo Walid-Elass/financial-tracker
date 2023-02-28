@@ -8,6 +8,7 @@ import avatar from "../data/avatar.jpg";
 import { History, Notification, UserProfile } from ".";
 import { useStateContext } from "../contexts/ContextProvider";
 
+
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   <TooltipComponent content={title} position="BottomCenter">
     <button
@@ -19,16 +20,37 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
       <span
         style={{ backgroundColor: dotColor }}
         className="absolute right-2 top-2 inline-flex h-2 w-2 rounded-full"
-      >
+      />
         {icon}
-      </span>
     </button>
   </TooltipComponent>
 );
 
 const NavBar = () => {
-  const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick } = useStateContext();
-  
+  const {
+    activeMenu,
+    setActiveMenu,
+    isClicked,
+    setIsClicked,
+    handleClick,
+    screenSize,
+    setScreenSize,
+  } = useStateContext();
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return ()=> window.removeEventListener('resize', handleResize);
+  },[])
+
+  useEffect(() => {
+    if(screenSize<=900){
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  },[screenSize])
 
   return (
     <div className="relative flex justify-between p-2 md:mx-6">
@@ -47,7 +69,7 @@ const NavBar = () => {
         />
         <NavButton
           title="Notifications"
-          dotColor="F84f31"
+          dotColor="#F84f31"
           customFunc={() => handleClick("notification")}
           color="blue"
           icon={<RiNotification3Line />}
@@ -69,9 +91,9 @@ const NavBar = () => {
           </div>
         </TooltipComponent>
 
-        {isClicked.history && <History/>}
-        {isClicked.notification && <Notification/>}
-        {isClicked.userProfile && <UserProfile/>}
+        {isClicked.history && <History />}
+        {isClicked.notification && <Notification />}
+        {isClicked.userProfile && <UserProfile />}
       </div>
     </div>
   );
