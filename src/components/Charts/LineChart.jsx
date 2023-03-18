@@ -4,7 +4,7 @@ import axios from "axios";
 const LineChart = () => {
   const getData = () => {
     axios
-      .get("http://localhost:8000/api/transaction/find/all", {})
+      .get("http://localhost:8000/get/transaction/all", {})
       .then(function (response) {
         console.log(response.data);
         setData(response.data);

@@ -1,10 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 import { Stacked, Pie, Button, Line, LineChart } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Homepage = () => {
+
+  let month = 1
+  let year = 2023
+
+  const getData = () => {
+    axios
+      .get(`http://localhost:8000/get/transaction/${year}/${month}/`, {})
+      .then(function (response) {
+        console.log(response.data[0].total);
+        setData(response.data[0].total);
+      });
+  };
+
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+
+
   return (
     <div className="mt-12">
       <div className="flex flex-wrap justify-center lg:flex-nowrap">
@@ -13,7 +35,7 @@ const Homepage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className=" font-bold text-gray-400">Available Balance</p>
-                <p className=" text-2xl">90,000 $</p>
+                <p className=" text-2xl">{data}</p>
               </div>
             </div>
             <div className=" mt-6">
