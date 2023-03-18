@@ -1,7 +1,7 @@
 import React from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
-import { Stacked, Pie, Button, Line } from "../components";
+import { Stacked, Pie, Button, Line, LineChart } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Homepage = () => {
@@ -24,6 +24,7 @@ const Homepage = () => {
                 borderRadius="10px"
                 size="md"
               />
+              <LineChart/>
             </div>
           </div>
           <div className="h-33 bg-black">Yearly Chart</div>

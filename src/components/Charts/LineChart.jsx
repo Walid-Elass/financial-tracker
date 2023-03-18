@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const LineChart = () => {
-  return (
-    <div>LineChart</div>
-  )
-}
+  const getData = () => {
+    axios
+      .get("http://localhost:8000/api/transaction/find/all", {})
+      .then(function (response) {
+        console.log(response.data);
+        setData(response.data);
+      });
+  };
 
-export default LineChart
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return <div>LineChart</div>;
+};
+
+export default LineChart;
