@@ -22,7 +22,7 @@ export const links = [
     title: "Transactions",
     links: [
       {
-        name: "Details",
+        name: "Transactions",
         icon: <GrTransaction />,
       },
       {
@@ -188,3 +188,5 @@ export const categories = [
     pcColor: "red-600",
   },
 ];
+
+
