@@ -6,9 +6,8 @@ import { Stacked, Pie, Button, Line, LineChart } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Homepage = () => {
-
-  let month = 1
-  let year = 2023
+  let month = 1;
+  let year = 2023;
 
   const getData = () => {
     axios
@@ -25,14 +24,12 @@ const Homepage = () => {
     getData();
   }, []);
 
-
-
   return (
     <div className="mt-12">
-      <div className="flex flex-wrap justify-center lg:flex-nowrap">
-        <div className="m-3 grid h-44 w-full grid-flow-col rounded-xl bg-white bg-hero-pattern bg-cover bg-center bg-no-repeat p-8 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200 lg:w-80">
+      <div className="flex flex-wrap lg:flex-nowrap">
+        <div className="m-3 flex h-44 justify-between w-full rounded-xl bg-white bg-hero-pattern bg-cover bg-center bg-no-repeat p-8 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200 lg:w-80">
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between w-80">
               <div>
                 <p className=" font-bold text-gray-400">Available Balance</p>
                 <p className=" text-2xl">{data}</p>
@@ -46,10 +43,11 @@ const Homepage = () => {
                 borderRadius="10px"
                 size="md"
               />
-              <LineChart/>
             </div>
           </div>
-          <div className="h-33 bg-black">Yearly Chart</div>
+          <div>
+            <LineChart />
+          </div>
         </div>
       </div>
     </div>

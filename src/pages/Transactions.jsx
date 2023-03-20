@@ -5,12 +5,8 @@ import {
   ColumnDirective,
   Resize,
   Sort,
-  ContextMenu,
   Filter,
   Page,
-  ExcelExport,
-  PdfExport,
-  Edit,
   Inject,
 } from "@syncfusion/ej2-react-grids";
 import { Header } from "../components";
@@ -34,19 +30,23 @@ const Transactions = () => {
     getData();
   }, []);
 
-
   return (
     <div className="m-2 rounded-3xl bg-white p-2 md:m-10 md:p-10">
       <Header category="Page" title="Transactions" />
       <GridComponent
       id="gridComp"
       dataSource={data}
+      allowPaging
+      allowSorting
+      allowFiltering
+      allowExcelExport
       >
         <ColumnsDirective>
         {transactionsGrid.map((transaction,index)=>(
           <ColumnDirective key={index} {...transaction}/>
         ))}
         </ColumnsDirective>
+        <Inject services={[Resize, Sort, Filter, Page]}/>
       </GridComponent>
     </div>
   );
