@@ -26,28 +26,26 @@ const Homepage = () => {
 
   return (
     <div className="mt-12">
-      <div className="flex flex-wrap lg:flex-nowrap">
-        <div className="m-3 flex h-44 justify-between w-full rounded-xl bg-white bg-hero-pattern bg-cover bg-center bg-no-repeat p-8 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200 lg:w-80">
-          <div>
-            <div className="flex items-center justify-between w-80">
-              <div>
-                <p className=" font-bold text-gray-400">Available Balance</p>
-                <p className=" text-2xl">{data}</p>
-              </div>
-            </div>
-            <div className=" mt-6">
-              <Button
-                color="white"
-                bgColor="blue"
-                text="Details"
-                borderRadius="10px"
-                size="md"
-              />
+      <div className="m-3 flex h-auto w-full justify-center gap-10 rounded-xl bg-white p-8 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200">
+        <div className="">
+          <div className="flex w-auto items-center justify-between">
+            <div>
+              <p className=" font-bold text-gray-400">Available Balance</p>
+              <p className=" text-2xl">{data}</p>
             </div>
           </div>
-          <div>
-            <LineChart />
+          <div className=" mt-6">
+            <Button
+              color="white"
+              bgColor="blue"
+              text="Details"
+              borderRadius="10px"
+              size="md"
+            />
           </div>
+        </div>
+        <div className=" ">
+          <LineChart />
         </div>
       </div>
     </div>
