@@ -10,3 +10,6 @@ export { default as ChartsHeader } from "./ChartsHeader";
 export { default as Header } from "./Header";
 export { default as Notification } from "./Notification";
 export { default as History } from "./History";
+export { default as Authenticated } from "./Auth/Authenticated";
+export { default as PublicRoute } from "./Auth/PublicRoute";
+
