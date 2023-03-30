@@ -11,7 +11,7 @@ import { useState } from "react";
 
 function App() {
   const { activeMenu } = useStateContext();
-  const [authenticated, setAuthenticated] = useState(true)
+  const [authenticated, setAuthenticated] = useState(false)
 
   return (
     <div>
