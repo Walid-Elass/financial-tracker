@@ -19,6 +19,7 @@ const handlers = {
       isAuthenticated,
       isInitialized: true,
       user,
+      
     };
   },
   LOGIN: (state, action) => {
@@ -35,6 +36,7 @@ const handlers = {
       ...state,
       isAuthenticated: false,
       user: null,
+      
     };
   },
 };
@@ -48,7 +50,8 @@ export const AuthProvider = (props) => {
   useEffect(() => {
     const initialize = async () => {
 
-        const accessToken = localStorage.getItem("accesToken");
+        const accessToken = sessionStorage.getItem("accessToken");
+        console.log("this is the access token", accessToken)
         if (accessToken && validateToken(accessToken)) {
           setSession(accessToken);
 
@@ -59,6 +62,7 @@ export const AuthProvider = (props) => {
             payload: {
               isAuthenticated: true,
               user,
+              
             },
           });
         } else {
@@ -78,7 +82,7 @@ export const AuthProvider = (props) => {
 
   return(
     <AuthContext.Provider value={{
-      ...state,dispatch
+      state,dispatch
     }}>
       
       {children}
@@ -87,5 +91,3 @@ export const AuthProvider = (props) => {
 
 
 };
-
-export const AuthConsume = AuthContext.Consumer

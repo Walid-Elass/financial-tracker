@@ -1,73 +1,66 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import { Footer, Sidebar, Authenticated, PublicRoute, Navbar } from "./components";
+import { Footer, Sidebar, Authenticated, PublicRoute } from "./components";
 import { Transactions, Homepage, LoginPage, RegisterPage } from "./pages";
-
-import { useStateContext } from "./contexts/ContextProvider";
 import { useState } from "react";
+import { useAuthContext } from "./hooks/useAuthContext";
+import PrivateLayout from "./components/layouts/PrivateLayout";
 
 function App() {
-  const { activeMenu } = useStateContext();
-  const [authenticated, setAuthenticated] = useState(false)
+  const {state} = useAuthContext();
 
   return (
     <div>
       <BrowserRouter>
-        { !authenticated ? (
-          <div>
-            <Routes>
-                {/* login */}
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-            </Routes>
-          </div>
-        ) : (
-          <div className=" relative flex dark:bg-main-dark-bg">
-          <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-            <TooltipComponent content="Settings" position="Top">
-              <button
-                type="button"
-                className="rounded-full p-3 text-3xl text-white hover:drop-shadow-xl"
-              >
-                <FiSettings />
-              </button>
-            </TooltipComponent>
-          </div>
-          {activeMenu ? (
-            <div className=" sidebar fixed w-72 bg-white dark:bg-secondary-dark-bg ">
-              <Sidebar />
-            </div>
+        {!state.isInitialized ? (
+            <div className="text-3xl text-red-700">Page is loading</div>
           ) : (
-            <div className="w-0 dark:bg-main-dark-bg">
-              <Sidebar />
-            </div>
-          )}
-          <div
-            className={`min-h-screen w-full bg-main-bg dark:bg-main-bg ${
-              activeMenu ? "md:ml-72" : "flex-2"
-            }`}
-          >
-            <div className=" navbar fixed w-full bg-main-bg dark:bg-main-dark-bg md:static">
-              <Navbar />
-            </div>
-            <div>
-              <Routes>
-                  {/* Dashboard */}
-                  <Route path="/" element={<Homepage />} />
-                  <Route path="/Homepage" element={<Homepage />} />
-                  {/* Details */}
-                  <Route path="/transactions" element={<Transactions />} />
-                  <Route path="/edit" element="edit" />
-              </Routes>
-            </div>
-          </div>
-        </div>
-        )}
-        
-
+            <Routes>
+              {/* login */}
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <PublicRoute>
+                    <RegisterPage />
+                  </PublicRoute>
+                }
+              />
+              {/* Dashboard */}
+              <Route
+                path="/Homepage"
+                element={
+                  <Authenticated>
+                    <PrivateLayout>
+                      <Homepage />
+                    </PrivateLayout>
+                  </Authenticated>
+                }
+              />
+              {/* Details */}
+              <Route
+                path="/transactions"
+                element={
+                  <Authenticated>
+                    <PrivateLayout>
+                      <Transactions />
+                    </PrivateLayout>
+                  </Authenticated>
+                }
+              />
+              <Route path="/edit" element="edit" />
+              <Route path="*" element={<Navigate to="/Homepage" />} />
+            </Routes>
+          )
+        }
       </BrowserRouter>
     </div>
   );

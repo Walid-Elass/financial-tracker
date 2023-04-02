@@ -23,7 +23,13 @@ export default function Login() {
 
   const authenticateUser = async () =>{
     console.log(loginState)
-    await login(loginState.email,loginState.password)
+    try {
+      await login(loginState.email,loginState.password)
+      
+    } catch (error) {
+      console.log(error.response.data.detail)
+    }
+    
   }
 
   return (
