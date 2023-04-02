@@ -1,9 +1,9 @@
 import axiosInstance from "../services/axios";
 import { setSession } from "../utils/session";
-import { useAuthContext } from "./useAuthContext";
+import { useAuthContext } from "./";
 import { useState } from "react";
 
-export const useLogin = () => {
+const useLogin = () => {
   const [error, setError] = useState(null);
   const [isloading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
@@ -36,3 +36,5 @@ export const useLogin = () => {
 
   return { login };
 };
+
+export default useLogin

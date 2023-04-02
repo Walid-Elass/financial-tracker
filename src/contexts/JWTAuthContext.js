@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useReducer, useRef } from "react";
 import axiosInstance from "../services/axios";
 import { validateToken } from "../utils/jwt";
-import { resetSession, setSession } from "../utils/session";
+import { setSession } from "../utils/session";
 
 const initialState = {
   isAuthenticated: false,

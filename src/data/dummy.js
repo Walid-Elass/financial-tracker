@@ -1,10 +1,11 @@
 import React from "react";
 import { MdDashboard } from "react-icons/md";
 import { GrTransaction } from "react-icons/gr";
-import { BsPersonCircle, BsFillPersonFill } from "react-icons/bs";
+import { BsPersonCircle, BsFillPersonFill, BsCurrencyDollar, BsShield } from "react-icons/bs";
 import { SiAddthis } from "react-icons/si";
 import {AiFillHome, AiTwotoneSetting} from "react-icons/ai";
 import {FaUniversity} from "react-icons/fa";
+import {FiCreditCard} from "react-icons/fi"
 
 
 export const links = [
@@ -189,4 +190,26 @@ export const categories = [
   },
 ];
 
-
+export const userProfileData = [
+  {
+    icon: <BsCurrencyDollar />,
+    title: 'My Profile',
+    desc: 'Account Settings',
+    iconColor: '#03C9D7',
+    iconBg: '#E5FAFB',
+  },
+  {
+    icon: <BsShield />,
+    title: 'My Inbox',
+    desc: 'Messages & Emails',
+    iconColor: 'rgb(0, 194, 146)',
+    iconBg: 'rgb(235, 250, 242)',
+  },
+  {
+    icon: <FiCreditCard />,
+    title: 'My Tasks',
+    desc: 'To-do and Daily Tasks',
+    iconColor: 'rgb(255, 244, 229)',
+    iconBg: 'rgb(254, 201, 15)',
+  },
+];

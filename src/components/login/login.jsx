@@ -2,7 +2,7 @@ import { useState } from "react";
 import { loginFields } from "../../data/formFields";
 import Input from "./Input";
 import FormAction from "./FormAction";
-import { useLogin } from "../../hooks/useLogin"
+import { useLogin }  from "../../hooks"
 
 const fields = loginFields;
 let fieldsState = {};

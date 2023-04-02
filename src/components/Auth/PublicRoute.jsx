@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { useAuthContext } from '../../hooks'
 
 const PublicRoute = (props) => {
   const {children} = props

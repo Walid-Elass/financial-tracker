@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Footer, Sidebar, Authenticated, PublicRoute } from "./components";
 import { Transactions, Homepage, LoginPage, RegisterPage } from "./pages";
 import { useState } from "react";
-import { useAuthContext } from "./hooks/useAuthContext";
+import { useAuthContext } from "./hooks";
 import PrivateLayout from "./components/layouts/PrivateLayout";
 
 function App() {

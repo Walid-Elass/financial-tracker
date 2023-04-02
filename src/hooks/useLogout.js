@@ -1,7 +1,8 @@
-import { useAuthContext } from "./useAuthContext";
+import { resetSession } from "../utils/session";
+import { useAuthContext } from "./";
 
 
-export const useLogout = () => {
+const useLogout = () => {
 
   const { dispatch } = useAuthContext()
 
@@ -10,4 +11,8 @@ export const useLogout = () => {
     dispatch({type: "LOGOUT"})
   }
 
+  return {logout}
+
 }
+
+export default useLogout;
