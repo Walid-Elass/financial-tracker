@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { Navbar, Footer, Sidebar, Authenticated, PublicRoute } from "./components";
+import { Footer, Sidebar, Authenticated, PublicRoute, Navbar } from "./components";
 import { Transactions, Homepage, LoginPage, RegisterPage } from "./pages";
 
 import { useStateContext } from "./contexts/ContextProvider";

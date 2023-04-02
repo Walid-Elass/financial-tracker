@@ -1,7 +1,7 @@
-import React, { useEffect, useReducer, useRef } from "react";
+import React, { createContext, useEffect, useReducer, useRef } from "react";
 import axiosInstance from "../services/axios";
 import { validateToken } from "../utils/jwt";
-import { setSession } from "../utils/session";
+import { resetSession, setSession } from "../utils/session";
 
 const initialState = {
   isAuthenticated: false,
@@ -9,11 +9,7 @@ const initialState = {
   user: null,
 };
 
-export const AuthContext = createContext({
-  ...initialState,
-  login: () => Promise.resolve(),
-  logout: () => Promise.resolve(),
-});
+export const AuthContext = createContext();
 
 const handlers = {
   INITIALIZE: (state, action) => {
@@ -30,8 +26,7 @@ const handlers = {
 
     return {
       ...state,
-      isAuthenticated,
-      isInitialized: true,
+      isAuthenticated: true,
       user,
     };
   },
@@ -39,24 +34,20 @@ const handlers = {
     return {
       ...state,
       isAuthenticated: false,
-      isInitialized: false,
       user: null,
     };
   },
 };
 
-const reducer = (state, action) =>
-  handlers[action.type] ? handlers[action.type](state, action) : state;
+const reducer = (state, action) =>  handlers[action.type] ? handlers[action.type](state, action) : state;
 
 export const AuthProvider = (props) => {
-  const { children } = props;
+  const {children} = props
   const [state, dispatch] = useReducer(reducer, initialState);
-  const isMounted = useRef(false)
 
   useEffect(() => {
-    if (isMounted.current)return;
     const initialize = async () => {
-      try {
+
         const accessToken = localStorage.getItem("accesToken");
         if (accessToken && validateToken(accessToken)) {
           setSession(accessToken);
@@ -79,26 +70,22 @@ export const AuthProvider = (props) => {
             },
           });
         }
-      } catch (error) {
-        console.error(error);
-        dispatch({
-          type: "INITIALIZE",
-          payload: {
-            isAuthenticated: false,
-            user: null,
-          },
-        });
-      }
     };
     initialize();
-    isMounted.current = true;
   }, []);
 
-  const login = async (email, password) => {
-    try {
+  console.log('AuthContext state: ',state)
+
+  return(
+    <AuthContext.Provider value={{
+      ...state,dispatch
+    }}>
       
-    } catch (error) {
-      
-    }
-  }
+      {children}
+    </AuthContext.Provider>
+  )
+
+
 };
+
+export const AuthConsume = AuthContext.Consumer

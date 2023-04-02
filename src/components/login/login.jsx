@@ -2,6 +2,7 @@ import { useState } from "react";
 import { loginFields } from "../../data/formFields";
 import Input from "./Input";
 import FormAction from "./FormAction";
+import { useLogin } from "../../hooks/useLogin"
 
 const fields = loginFields;
 let fieldsState = {};
@@ -9,6 +10,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
+  const {login} = useLogin()
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -19,12 +21,13 @@ export default function Login() {
     authenticateUser();
   } 
 
-  const authenticateUser = () =>{
-
+  const authenticateUser = async () =>{
+    console.log("this is trigerred")
+    await login(loginState.email,loginState.password)
   }
 
   return (
-    <form className="mt-8 space-y-6">
+    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
       <div className="-space-y-px">
         {fields.map((field) => (
           <Input
