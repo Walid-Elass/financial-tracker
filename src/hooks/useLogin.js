@@ -10,7 +10,7 @@ export const useLogin = () => {
   const { dispatch } = useAuthContext()
 
   const getTokens = async (email, password) => {
-    console.log("triggered")
+    console.log("Token call triggered")
     const formData = new FormData();
     formData.append("username", email);
     formData.append("password", password);
@@ -20,6 +20,8 @@ export const useLogin = () => {
   };
 
   const login = async (email, password) => {
+    console.log("Login call triggered")
+    console.log(email,"|",password)
     await getTokens(email, password);
     const response = await axiosInstance.get("/users/me");
 

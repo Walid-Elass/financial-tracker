@@ -22,7 +22,7 @@ export default function Login() {
   } 
 
   const authenticateUser = async () =>{
-    console.log("this is trigerred")
+    console.log(loginState)
     await login(loginState.email,loginState.password)
   }
 
