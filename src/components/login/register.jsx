@@ -2,6 +2,7 @@ import { useState } from "react";
 import { registerFields } from "../../data/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
+import {useRegister} from '../../hooks' 
 
 const fields = registerFields;
 let fieldsState = {};
@@ -10,6 +11,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Register() {
   const [registerState, setRegisterState] = useState(fieldsState);
+  const {register} = useRegister()
 
   const handleChange = (e) =>
     setRegisterState({ ...registerState, [e.target.id]: e.target.value });
@@ -21,7 +23,9 @@ export default function Register() {
   };
 
   //handle Signup API Integration here
-  const createAccount = () => {};
+  const createAccount = async () => {
+    await register(registerState)
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

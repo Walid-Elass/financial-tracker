@@ -54,8 +54,8 @@ const registerFields=[
     },
     {
         labelText:"Confirm Password",
-        labelFor:"confirm-password",
-        id:"confirm-password",
+        labelFor:"confirm_password",
+        id:"confirm_password",
         name:"confirm-password",
         type:"password",
         autoComplete:"confirm-password",

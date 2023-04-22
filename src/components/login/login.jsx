@@ -3,6 +3,7 @@ import { loginFields } from "../../data/formFields";
 import Input from "./Input";
 import FormAction from "./FormAction";
 import { useLogin }  from "../../hooks"
+import { toast } from "react-toastify"
 
 const fields = loginFields;
 let fieldsState = {};
@@ -25,8 +26,31 @@ export default function Login() {
     console.log(loginState)
     try {
       await login(loginState.email,loginState.password)
-      
+
+      const notify = () => {
+        toast.success('Logged in successfully', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      }
     } catch (error) {
+      const notify = () => {
+        toast.error(error.response.data.detail, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });}
       console.log(error.response.data.detail)
     }
     
