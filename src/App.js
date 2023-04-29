@@ -6,7 +6,6 @@ import { Transactions, Homepage, LoginPage, RegisterPage } from "./pages";
 import { useState } from "react";
 import { useAuthContext } from "./hooks";
 import PrivateLayout from "./components/layouts/PrivateLayout";
-import { toast, ToastContainer } from "react-toastify";
 
 function App() {
   const { state } = useAuthContext();
@@ -62,7 +61,6 @@ function App() {
           </Routes>
         )}
       </BrowserRouter>
-      <ToastContainer />
     </div>
   );
 }
