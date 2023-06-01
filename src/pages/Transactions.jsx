@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   GridComponent,
   ColumnsDirective,
@@ -9,45 +8,61 @@ import {
   Page,
   Inject,
 } from "@syncfusion/ej2-react-grids";
-import { Header } from "../components";
-import {transactionsGrid} from "../data/transactionsGrid"
-import axios from "axios";
+import { Button, Header } from "../components";
+import { transactionsGrid } from "../data/transactionsGrid";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getTransactions } from "../api/GET/getTransactions";
 
 const Transactions = () => {
-  
-  const getData = () => {
-    axios
-      .get("http://localhost:8000/get/transaction/all", {})
-      .then(function (response) {
-        console.log(response.data);
-        setData(response.data);
-      });
-  };
-  
-  const [data, setData] = useState();
+  // Access the client
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // Queries
+  const {
+    data: transactions,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["transactions"],
+    queryFn: () => getTransactions(),
+  });
+
+  const pageOptions = {
+    pageSize: 8, pageSizes: true
+};
 
   return (
     <div className="m-2 rounded-3xl bg-white p-2 md:m-10 md:p-10">
       <Header category="Page" title="Transactions" />
-      <GridComponent
-      id="gridComp"
-      dataSource={data}
-      allowPaging
-      allowSorting
-      allowFiltering
-      allowExcelExport
-      >
-        <ColumnsDirective>
-        {transactionsGrid.map((transaction,index)=>(
-          <ColumnDirective key={index} {...transaction}/>
-        ))}
-        </ColumnsDirective>
-        <Inject services={[Resize, Sort, Filter, Page]}/>
-      </GridComponent>
+      <div className="flex flex-col gap-3">
+        <div className=" place-self-end">
+          <Button
+            bgColor="blue"
+            text="Import"
+            color="white"
+            borderRadius="10px"
+            size="lg"
+          ></Button>
+        </div>
+        {transactions && (
+          <GridComponent
+            id="gridComp"
+            dataSource={transactions.data}
+            allowPaging
+            allowSorting
+            allowFiltering
+            allowExcelExport
+            pageSettings={pageOptions}
+          >
+            <ColumnsDirective>
+              {transactionsGrid.map((transaction, index) => (
+                <ColumnDirective key={index} {...transaction} />
+              ))}
+            </ColumnsDirective>
+            <Inject services={[Resize, Sort, Filter, Page]} />
+          </GridComponent>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useReducer, useRef } from "react";
-import axiosInstance from "../services/axios";
+import userAxiosInstance from "../services/userAxios";
 import { validateToken } from "../utils/jwt";
 import { setSession } from "../utils/session";
 
@@ -51,11 +51,10 @@ export const AuthProvider = (props) => {
     const initialize = async () => {
 
         const accessToken = sessionStorage.getItem("accessToken");
-        console.log("this is the access token", accessToken)
         if (accessToken && validateToken(accessToken)) {
           setSession(accessToken);
 
-          const response = await axiosInstance.get("/users/me");
+          const response = await userAxiosInstance.get("/users/me");
           const { data: user } = response;
           dispatch({
             type: "INITIALIZE",

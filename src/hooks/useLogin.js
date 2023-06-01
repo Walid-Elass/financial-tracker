@@ -1,4 +1,5 @@
-import axiosInstance from "../services/axios";
+import { postToken } from "../api/POST/postToken";
+import userAxiosInstance from "../services/userAxios";
 import { setSession } from "../utils/session";
 import { useAuthContext } from "./";
 import { useState } from "react";
@@ -13,7 +14,7 @@ const useLogin = () => {
     const formData = new FormData();
     formData.append("username", email);
     formData.append("password", password);
-    const response = await axiosInstance.post("/auth/login", formData);
+    const response = await postToken(formData);
     setSession(response.data.access_token, response.data.refresh_token);
   };
 
@@ -22,7 +23,7 @@ const useLogin = () => {
     console.log(email, "|", password);
 
     await getTokens(email, password);
-    const response = await axiosInstance.get("/users/me");
+    const response = await userAxiosInstance.get("/users/me");
     console.log("Logged In successfully");
     const { data: user } = response;
 

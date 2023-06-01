@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axiosInstance from "../services/axios";
+import userAxiosInstance from "../services/userAxios";
 
 const useRegister = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const useRegister = () => {
   const register = async (user) => {
     try {
       if (user.password == user.confirm_password) {
-        const response = await axiosInstance.post("/users/create", user);
+        const response = await userAxiosInstance.post("/users/create", user);
         if (response.status == 200) {
           navigate("/login", { replace: true, state: { from: location } });
         }
