@@ -67,11 +67,9 @@ const Th = ({ children, reversed, sorted, onSort }) => {
 
 const filterData = (data, search) => {
     const query = search.toLowerCase().trim();
-    console.log(keys(data[0]));
     return data.filter((item) =>
         keys(data[0]).some((key) => {
             const value = item[key];
-            console.log();
             if (typeof value == "string") {
                 return item[key].toLowerCase().includes(query);
             } else {
@@ -85,8 +83,6 @@ const sortData = (data, payload) => {
     const { sortBy } = payload;
 
     const sortByNormalized = sortBy.toLowerCase();
-
-    console.log(sortByNormalized);
     if (!sortBy) {
         return filterData(data, payload.search);
     }
