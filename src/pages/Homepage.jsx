@@ -10,12 +10,12 @@ const Homepage = () => {
   let year = 2023;
 
   const getData = () => {
-    axios
-      .get(`http://localhost:8000/get/transaction/${year}/${month}/`, {})
-      .then(function (response) {
-        console.log(response.data[0].total);
-        setData(response.data[0].total);
-      });
+    // axios
+    //   .get(`http://localhost:8000/get/transaction/${year}/${month}/`, {})
+    //   .then(function (response) {
+    //     console.log(response.data[0].total);
+    //     setData(response.data[0].total);
+    //   });
   };
 
   const [data, setData] = useState();

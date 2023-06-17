@@ -53,3 +53,41 @@
 .e-input-group.e-control-wrapper.e-error:not(.e-float-icon-left) {
   border: none;
 }
+
+.modal {
+  z-index: 99999 !important;
+}
+
+
+
+/* File Input Wrapper */
+.upload .mantine-1ejqehl{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* File Input Button Wrapper*/
+.upload .mantine-1v7s5f8{
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+/* File Input Button */
+.upload .mantine-qpzkyh{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* File Input Button text*/
+.upload .mantine-9sdgkq{
+  font-size: large;
+  color: blue;
+  font-weight: 300;
+}

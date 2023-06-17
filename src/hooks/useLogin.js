@@ -1,4 +1,4 @@
-import { postToken } from "../api/POST/postToken";
+import { postToken } from "../api/Token/POST/postToken";
 import userAxiosInstance from "../services/userAxios";
 import { setSession } from "../utils/session";
 import { useAuthContext } from "./";

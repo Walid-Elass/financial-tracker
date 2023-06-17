@@ -1,4 +1,4 @@
-import transactionsAxiosInstance from "../../services/transactionAxios"
+import transactionsAxiosInstance from "../../../services/transactionAxios"
 
 
 export const getTransactions = async () => {

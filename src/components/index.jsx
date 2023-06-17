@@ -12,4 +12,7 @@ export { default as Notification } from "./Notification";
 export { default as History } from "./History";
 export { default as Authenticated } from "./Auth/Authenticated";
 export { default as PublicRoute } from "./Auth/PublicRoute";
+export { default as UploadFile } from "./Upload";
+export { default as Modal } from "./Modal";
+export { default as DataGrid } from "./DataGrid";
 
